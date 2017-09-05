@@ -2,6 +2,7 @@ import csv
 import numpy as np
 from scipy import interpolate
 import matplotlib.pyplot as plt
+import json
 
 def read_detail_data():
     f = open('./Nagumo/detail_data.csv', 'r')
@@ -71,6 +72,14 @@ if __name__ == '__main__':
     for (idx, x) in enumerate(all_data):
         tck_list.append(interpolate.splrep(t, x))
         x_new =  interpolate.splev(t_detail, tck_list[idx], der=0)
-        interpolate_list.append(x_new)
+        interpolate_list.append(x_new.tolist())
 
-    print(np.array(interpolate_list).shape)
+    # print(interpolate_list.shape) = (2500, 501)
+
+    saveJSON = {
+        'allTimeSeries': interpolate_list,
+        'width': 50
+    }
+    f = open("./data/NagumoIntepolate", "w")
+    json.dump(saveJSON, f)
+    f.close()
