@@ -77,7 +77,7 @@ if __name__ == '__main__':
     # print(interpolate_list.shape) = (2500, 501)
 
     saveJSON = {
-        'allTimeSeries': interpolate_list,
+        'allTimeSeries': interpolate_list[::-1], # reverse interpolate_list
         'width': 50
     }
     f = open("./data/NagumoInterpolate.json", "w")
