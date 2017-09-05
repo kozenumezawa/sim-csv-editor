@@ -80,6 +80,6 @@ if __name__ == '__main__':
         'allTimeSeries': interpolate_list,
         'width': 50
     }
-    f = open("./data/NagumoIntepolate", "w")
+    f = open("./data/NagumoInterpolate.json", "w")
     json.dump(saveJSON, f)
     f.close()
